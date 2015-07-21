@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PokerPay</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="current_players">There are no players specified yet</string>
+    <string name="prompt_player_count">How many players are there?</string>
+</resources>
