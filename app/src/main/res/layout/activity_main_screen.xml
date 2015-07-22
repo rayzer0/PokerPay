@@ -18,12 +18,18 @@
         android:layout_below="@id/text"
         android:hint="@string/prompt_player_name"
         android:inputType="text" />
+    <EditText
+        android:id="@+id/buy_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/new_player"
+        android:hint="@string/prompt_buy_in"
+        android:inputType="numberDecimal" />
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:layout_below="@id/text"
-        android:layout_toRightOf="@id/new_player" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

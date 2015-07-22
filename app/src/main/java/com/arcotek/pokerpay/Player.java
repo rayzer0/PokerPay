@@ -1,20 +1,23 @@
 package com.arcotek.pokerpay;
 
+import java.math.BigDecimal;
+
 /**
  * Created by miao.raymond on 7/22/2015.
  */
 public class Player {
     public String name;
     public String number;
-    public String money;
+    public BigDecimal money;
 
-    public Player(String name, String number, String money) {
+    public Player(String name, String number, BigDecimal money) {
         this.name = name;
         this.number = number;
         this.money = money;
     }
-    public Player(String name) {
+    public Player(String name, BigDecimal money) {
         this.name = name;
+        this.money = money;
     }
     public String getName() {
         return name;
@@ -32,11 +35,11 @@ public class Player {
         this.number = number;
     }
 
-    public String getMoney() {
+    public BigDecimal getMoney() {
         return money;
     }
 
-    public void setMoney(String money) {
+    public void setMoney(BigDecimal money) {
         this.money = money;
     }
 }

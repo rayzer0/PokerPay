@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 
@@ -22,18 +23,20 @@ public class MainScreen extends ActionBarActivity {
 
         Button submitPlayers = (Button) findViewById(R.id.submit);
         final EditText addPlayer = (EditText) findViewById(R.id.new_player);
+        final EditText buyInString = (EditText) findViewById(R.id.buy_in);
         final TextView listPlayers = (TextView) findViewById(R.id.text);
         final ArrayList<Player> playerList = new ArrayList<>();
 
         submitPlayers.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v) {
-                Player newPlayer = new Player(addPlayer.getText().toString());
+                BigDecimal buyInAmount = new BigDecimal(buyInString.getText().toString());
+                Player newPlayer = new Player(addPlayer.getText().toString(), buyInAmount);
                 playerList.add(newPlayer);
                 if (playerList.size()==1) {
-                    listPlayers.setText(playerList.get(playerList.size()-1).getName());
+                    listPlayers.setText(playerList.get(playerList.size()-1).getName() + "$" + buyInAmount);
                 }
                 else {
-                    listPlayers.append("\n"+playerList.get(playerList.size()-1).getName());
+                    listPlayers.append("\n"+playerList.get(playerList.size()-1).getName() + "$" + buyInAmount);
                 }
             }
         });

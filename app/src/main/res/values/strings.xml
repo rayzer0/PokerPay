@@ -6,4 +6,5 @@
     <string name="current_players">There are no players specified yet</string>
     <string name="prompt_player_name">New player\'s name</string>
     <string name="submit">Submit</string>
+    <string name="prompt_buy_in">Buy-in</string>
 </resources>
