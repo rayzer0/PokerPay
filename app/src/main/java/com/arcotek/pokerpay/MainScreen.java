@@ -4,14 +4,39 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class MainScreen extends ActionBarActivity {
+    int playerCount = 0; //no current players yet
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        Button submitPlayers = (Button) findViewById(R.id.submit);
+        final EditText addPlayer = (EditText) findViewById(R.id.new_player);
+        final TextView listPlayers = (TextView) findViewById(R.id.text);
+        final ArrayList<Player> playerList = new ArrayList<>();
+
+        submitPlayers.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v) {
+                Player newPlayer = new Player(addPlayer.getText().toString());
+                playerList.add(newPlayer);
+                if (playerList.size()==1) {
+                    listPlayers.setText(playerList.get(playerList.size()-1).getName());
+                }
+                else {
+                    listPlayers.append("\n"+playerList.get(playerList.size()-1).getName());
+                }
+            }
+        });
     }
 
     @Override
