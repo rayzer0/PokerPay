@@ -5,31 +5,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainScreen">
 
-    <TextView android:id="@+id/text"
-        android:text="@string/current_players"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"/>
 
-    <EditText
-        android:id="@+id/new_player"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text"
-        android:hint="@string/prompt_player_name"
-        android:inputType="text" />
-    <EditText
-        android:id="@+id/buy_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/new_player"
-        android:hint="@string/prompt_buy_in"
-        android:inputType="numberDecimal" />
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/goto_add_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:layout_alignParentBottom="true" />
-
+        android:layout_alignParentRight="true" />
+    <ListView
+        android:id="@+id/list_of_players"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/goto_add_player"/>
+    <TextView
+        android:id="@+id/text"
+        android:text="@string/current_players"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@id/list_of_players"/>
 </RelativeLayout>
