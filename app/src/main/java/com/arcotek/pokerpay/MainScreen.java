@@ -1,6 +1,7 @@
 package com.arcotek.pokerpay;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,31 +14,20 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 
-public class MainScreen extends ActionBarActivity {
-    int playerCount = 0; //no current players yet
+public class MainScreen extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        Button submitPlayers = (Button) findViewById(R.id.submit);
-        final EditText addPlayer = (EditText) findViewById(R.id.new_player);
-        final EditText buyInString = (EditText) findViewById(R.id.buy_in);
-        final TextView listPlayers = (TextView) findViewById(R.id.text);
+        Button gotoAddPlayer = (Button) findViewById(R.id.goto_add_player);
         final ArrayList<Player> playerList = new ArrayList<>();
 
-        submitPlayers.setOnClickListener(new View.OnClickListener() {
-            public void onClick (View v) {
-                BigDecimal buyInAmount = new BigDecimal(buyInString.getText().toString());
-                Player newPlayer = new Player(addPlayer.getText().toString(), buyInAmount);
-                playerList.add(newPlayer);
-                if (playerList.size()==1) {
-                    listPlayers.setText(playerList.get(playerList.size()-1).getName() + "$" + buyInAmount);
-                }
-                else {
-                    listPlayers.append("\n"+playerList.get(playerList.size()-1).getName() + "$" + buyInAmount);
-                }
+        gotoAddPlayer.setOnClickListener(new View.OnClickListener() { //goto AddPlayer Activity, receive a new player to add to playerList
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), AddPlayer.class);
+                startActivity(intent);
             }
         });
     }
