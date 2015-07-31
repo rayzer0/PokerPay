@@ -1,11 +1,14 @@
 package com.arcotek.pokerpay;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.math.BigDecimal;
 
 /**
  * Created by miao.raymond on 7/22/2015.
  */
-public class Player {
+public class Player implements Parcelable {
     public String name;
     public String number;
     public BigDecimal money;
@@ -42,4 +45,35 @@ public class Player {
     public void setMoney(BigDecimal money) {
         this.money = money;
     }
+
+    protected Player(Parcel in) {
+        name = in.readString();
+        number = in.readString();
+        money = (BigDecimal) in.readValue(BigDecimal.class.getClassLoader());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(number);
+        dest.writeValue(money);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
+        @Override
+        public Player createFromParcel(Parcel in) {
+            return new Player(in);
+        }
+
+        @Override
+        public Player[] newArray(int size) {
+            return new Player[size];
+        }
+    };
 }

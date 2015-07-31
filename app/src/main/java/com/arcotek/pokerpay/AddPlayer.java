@@ -1,5 +1,7 @@
 package com.arcotek.pokerpay;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,10 +28,14 @@ public class AddPlayer extends ActionBarActivity {
         //final ArrayList<Player> playerList = new ArrayList<>();
 
         submitPlayer.setOnClickListener(new View.OnClickListener() { //add new player with defined name+money owed pulled from edittexts
-            public void onClick(View v) {
+            public void onClick(View v) { //adds player with info listed in field on submit
                 BigDecimal buyInAmount = new BigDecimal(buyInText.getText().toString());
                 Player newPlayer = new Player(playerName.getText().toString(), buyInAmount);
                 //playerList.add(newPlayer);
+
+                Intent intent = new Intent(v.getContext(), MainScreen.class);
+                intent.putExtra("new_player", newPlayer);
+                startActivity(intent);
             }
         });
     }
