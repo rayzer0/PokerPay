@@ -46,6 +46,11 @@ public class Player implements Parcelable {
         this.money = money;
     }
 
+    @Override
+    public String toString() {
+        return name +"     $"+ money;
+    }
+
     protected Player(Parcel in) {
         name = in.readString();
         number = in.readString();

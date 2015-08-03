@@ -25,16 +25,17 @@ public class AddPlayer extends ActionBarActivity {
         Button submitPlayer = (Button) findViewById(R.id.new_player_btn);
         final EditText playerName = (EditText) findViewById(R.id.player_name_field);
         final EditText buyInText = (EditText) findViewById(R.id.buy_in_field);
-        //final ArrayList<Player> playerList = new ArrayList<>();
+
+        final ArrayList<Player> playerList = getIntent().getParcelableArrayListExtra("player_list"); //gets current player list (to add to)
 
         submitPlayer.setOnClickListener(new View.OnClickListener() { //add new player with defined name+money owed pulled from edittexts
             public void onClick(View v) { //adds player with info listed in field on submit
                 BigDecimal buyInAmount = new BigDecimal(buyInText.getText().toString());
                 Player newPlayer = new Player(playerName.getText().toString(), buyInAmount);
-                //playerList.add(newPlayer);
+                playerList.add(newPlayer);
 
                 Intent intent = new Intent(v.getContext(), MainScreen.class);
-                intent.putExtra("new_player", newPlayer);
+                intent.putParcelableArrayListExtra("player_list", playerList);
                 startActivity(intent);
             }
         });

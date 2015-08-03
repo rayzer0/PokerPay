@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 
 public class MainScreen extends Activity {
+    ArrayList<Player> playerList = new ArrayList<>(); //todo find a more elegant solution than declaring playerList outside of oncreate
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +26,10 @@ public class MainScreen extends Activity {
 
         Button gotoAddPlayer = (Button) findViewById(R.id.goto_add_player);
         ListView listOfPlayers = (ListView) findViewById(R.id.list_of_players);
-        ArrayList<Player> playerList = new ArrayList<>();
 
-        Bundle extras = getIntent().getExtras();
+        Bundle extras = getIntent().getExtras(); //checks to make sure there are extras before trying to overwrite playerList with the one from the intent
         if (extras != null) {
-            playerList.add(playerList.size(), (Player) extras.getParcelable("new_player")); //TODO: only holding one player at time?
+            playerList = getIntent().getParcelableArrayListExtra("player_list");;
         }
 
         ArrayAdapter<Player> adapter = new ArrayAdapter<Player>(this, R.layout.player_in_list, playerList); //TODO: not showing tostring
@@ -38,6 +38,7 @@ public class MainScreen extends Activity {
         gotoAddPlayer.setOnClickListener(new View.OnClickListener() { //goto AddPlayer Activity
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddPlayer.class);
+                intent.putParcelableArrayListExtra("player_list", playerList);
                 startActivity(intent);
             }
         });
