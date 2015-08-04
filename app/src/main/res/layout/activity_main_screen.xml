@@ -10,7 +10,7 @@
         android:id="@+id/goto_add_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
+        android:text="@string/goto_add_player"
         android:layout_alignParentRight="true" />
     <ListView
         android:id="@+id/list_of_players"

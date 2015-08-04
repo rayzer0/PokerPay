@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,14 +28,25 @@ public class MainScreen extends Activity {
 
         Button gotoAddPlayer = (Button) findViewById(R.id.goto_add_player);
         ListView listOfPlayers = (ListView) findViewById(R.id.list_of_players);
+        Intent intent = getIntent();
 
-        Bundle extras = getIntent().getExtras(); //checks to make sure there are extras before trying to overwrite playerList with the one from the intent
-        if (extras != null) {
+        if (intent.hasExtra("player_list") == true) {
             playerList = getIntent().getParcelableArrayListExtra("player_list");;
         }
 
-        ArrayAdapter<Player> adapter = new ArrayAdapter<Player>(this, R.layout.player_in_list, playerList); //TODO: not showing tostring
+        ArrayAdapter<Player> adapter = new ArrayAdapter<Player>(this, R.layout.player_in_list, playerList); //displays playerList
         listOfPlayers.setAdapter(adapter);
+
+        listOfPlayers.setOnItemClickListener(new AdapterView.OnItemClickListener() { //TODO: goto corresponding EditPlayer activity
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position,long id) {
+                String item = ((TextView)v).getText().toString();
+                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(v.getContext(), EditPlayer.class);
+                intent.putExtra("player", playerList.get(position));
+                startActivity(intent);
+            }
+        });
 
         gotoAddPlayer.setOnClickListener(new View.OnClickListener() { //goto AddPlayer Activity
             public void onClick(View v) {

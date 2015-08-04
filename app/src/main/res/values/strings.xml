@@ -9,4 +9,6 @@
     <string name="buy_in_field">Buy-in</string>
     <string name="add_player_text">Add a New Player:</string>
     <string name="title_activity_add_player">AddPlayer</string>
+    <string name="goto_add_player">Add Player</string>
+    <string name="title_activity_edit_player">EditPlayer</string>
 </resources>
