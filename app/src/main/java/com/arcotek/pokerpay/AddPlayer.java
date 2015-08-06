@@ -30,7 +30,7 @@ public class AddPlayer extends ActionBarActivity {
 
         submitPlayer.setOnClickListener(new View.OnClickListener() { //add new player with defined name+money owed pulled from edittexts
             public void onClick(View v) { //adds player with info listed in field on submit
-                BigDecimal buyInAmount = new BigDecimal(buyInText.getText().toString());
+                BigDecimal buyInAmount = new BigDecimal(buyInText.getText().toString()).negate(); //puts the buyin field amount as a negative bigdecimal
                 Player newPlayer = new Player(playerName.getText().toString(), buyInAmount);
                 playerList.add(newPlayer);
 

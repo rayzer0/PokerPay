@@ -19,7 +19,8 @@ import java.util.ArrayList;
 
 
 public class MainScreen extends Activity {
-    ArrayList<Player> playerList = new ArrayList<>(); //todo find a more elegant solution than declaring playerList outside of oncreate
+    static ArrayList<Player> playerList = new ArrayList<>(); //todo find a more elegant solution than declaring playerList outside of oncreate
+    static int playerPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +34,24 @@ public class MainScreen extends Activity {
         if (intent.hasExtra("player_list") == true) {
             playerList = getIntent().getParcelableArrayListExtra("player_list");;
         }
+        if (intent.hasExtra("more_money") == true) {
+            Player editPlayer = playerList.get(playerPosition);
+            BigDecimal moreMoney = intent.getParcelableExtra("more_money");
+            editPlayer.setMoney(editPlayer.getMoney().add(moreMoney));
+            playerList.set(playerPosition, editPlayer);
+        }
 
         ArrayAdapter<Player> adapter = new ArrayAdapter<Player>(this, R.layout.player_in_list, playerList); //displays playerList
         listOfPlayers.setAdapter(adapter);
 
         listOfPlayers.setOnItemClickListener(new AdapterView.OnItemClickListener() { //TODO: goto corresponding EditPlayer activity
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position,long id) {
+            public void onItemClick(AdapterView<?> parent, View v, int position,long id) {  //edit player
+                playerPosition = position;
+
                 String item = ((TextView)v).getText().toString();
                 Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(v.getContext(), EditPlayer.class);
                 intent.putExtra("player", playerList.get(position));
                 startActivity(intent);
@@ -49,7 +59,7 @@ public class MainScreen extends Activity {
         });
 
         gotoAddPlayer.setOnClickListener(new View.OnClickListener() { //goto AddPlayer Activity
-            public void onClick(View v) {
+            public void onClick(View v) { //add player
                 Intent intent = new Intent(v.getContext(), AddPlayer.class);
                 intent.putParcelableArrayListExtra("player_list", playerList);
                 startActivity(intent);
