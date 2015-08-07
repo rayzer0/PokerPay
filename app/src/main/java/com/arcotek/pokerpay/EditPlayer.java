@@ -36,13 +36,14 @@ public class EditPlayer extends ActionBarActivity implements View.OnClickListene
     public void onClick(View v) {
         final EditText moreMoney = (EditText) findViewById(R.id.more_money);
 
-        BigDecimal moreMoneyAmount = new BigDecimal(moreMoney.getText().toString());
+        String moreMoneyString = moreMoney.getText().toString();
         if (v.getId()==R.id.add_buy_in) { //if buy in button clicked, make the money negative
-            moreMoneyAmount.negate();
+            moreMoneyString = "-"+moreMoneyString;
         }
+        moreMoney.toString();
 
         Intent intent = new Intent(v.getContext(), MainScreen.class);
-        intent.putExtra("more_money", moreMoneyAmount); //TODO cannot send intent with BigDecimal
+        intent.putExtra("more_money", moreMoneyString); //TODO cannot send intent with BigDecimal
         startActivity(intent);
     }
     @Override

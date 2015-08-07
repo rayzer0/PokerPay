@@ -31,12 +31,12 @@ public class MainScreen extends Activity {
         ListView listOfPlayers = (ListView) findViewById(R.id.list_of_players);
         Intent intent = getIntent();
 
-        if (intent.hasExtra("player_list") == true) {
+        if (intent.hasExtra("player_list") == true) { //if returning from AddPlayer
             playerList = getIntent().getParcelableArrayListExtra("player_list");;
         }
-        if (intent.hasExtra("more_money") == true) {
+        if (intent.hasExtra("more_money") == true) { //if returning from EditPlayer
             Player editPlayer = playerList.get(playerPosition);
-            BigDecimal moreMoney = intent.getParcelableExtra("more_money");
+            BigDecimal moreMoney = new BigDecimal(intent.getStringExtra("more_money"));
             editPlayer.setMoney(editPlayer.getMoney().add(moreMoney));
             playerList.set(playerPosition, editPlayer);
         }
