@@ -8,7 +8,27 @@
 
     <TextView
         android:id="@+id/player_name"
+        android:text="namehere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
+    <EditText
+        android:id="@+id/more_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/player_name"
+        android:hint="@string/buy_in_field"
+        android:inputType="numberDecimal" />
+    <Button
+        android:id="@+id/add_buy_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buy_in_field"
+        android:layout_alignParentBottom="true" />
+    <Button
+        android:id="@+id/add_cash_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cash_out"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>
